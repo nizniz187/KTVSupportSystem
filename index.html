@@ -22,11 +22,16 @@
   <button id="tamb1"></button>
   <button id="tamb2"></button>
   <script>
+    const src1 = './tambourine-sound-1.mp3';
+    const src2 = './tambourine-sound-2.mp3';
+    new Audio(src1);
+    new Audio(src2);
+
     function playSound(src) {
       (new Audio(src)).play();
     }
-    document.querySelector('#tamb1').addEventListener('click', () => playSound('./tambourine-sound-1.mp3'));
-    document.querySelector('#tamb2').addEventListener('click', () => playSound('./tambourine-sound-2.mp3'));
+    document.querySelector('#tamb1').addEventListener('click', () => playSound(src1));
+    document.querySelector('#tamb2').addEventListener('click', () => playSound(src2));
   </script>
 </body>
 </html>
