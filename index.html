@@ -29,27 +29,31 @@
   <script>
     const src1 = './tambourine-sound-1.mp3';
     const src2 = './tambourine-sound-2.mp3';
-    new Audio(src1);
-    new Audio(src2);
+    const sound1 = createSoundArray(src1);
+    const sound2 = createSoundArray(src2);
 
     const btn1 = document.querySelector('#tamb1');
     const btn2 = document.querySelector('#tamb2');
 
-    function createSoundPlayHandler(src) {
-      return () => (new Audio(src)).play();
+    function createSoundArray(src) {
+      const array = new Array(20);
+      for(let i = 0; i < array.length; i++) {
+        array[i] = new Audio(src);
+      }
+      return array;
+    }
+    function playSound(src) {
+      src.find(s => s.paused).play();
     }
     function keydownHandler(e) {
-      console.log(e.keyCode)
       if(e.keyCode == 16 || e.keyCode == 32) {
-        soundPlayHandler1();
+        playSound(sound1);
       } else if(e.keyCode == 17 || e.keyCode == 13) {
-        soundPlayHandler2();
+        playSound(sound2);
       }
     }
-    const soundPlayHandler1 = createSoundPlayHandler(src1);
-    const soundPlayHandler2 = createSoundPlayHandler(src2);
-    btn1.addEventListener('mousedown', soundPlayHandler1);
-    btn2.addEventListener('mousedown', soundPlayHandler2);
+    btn1.addEventListener('mousedown', () => playSound(sound1));
+    btn2.addEventListener('mousedown', () => playSound(sound2));
     window.addEventListener('keydown', keydownHandler);
   </script>
 </body>
