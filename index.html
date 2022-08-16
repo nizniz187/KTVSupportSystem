@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    html { height: 100%; }
+    body {
+      display: flex; flex-direction: column; justify-content: center; 
+      align-items: stretch; align-content: stretch;
+      height: 100%; width: 100%;
+      margin: 0;
+    }
+    button {
+      flex: 1;
+      margin: 10px;
+      background: rgba(76, 158, 0, 0.5) url('./tambourine.png') no-repeat center/contain;
+    }
+    #tamb2 {
+      background-color: rgba(0, 87, 158, 0.5)
+    }
+  </style>
+</head>
+<body>
+  <button id="tamb1"></button>
+  <button id="tamb2"></button>
+  <script>
+    function playSound(src) {
+      (new Audio(src)).play();
+    }
+    document.querySelector('#tamb1').addEventListener('click', () => playSound('./tambourine-sound-1.mp3'));
+    document.querySelector('#tamb2').addEventListener('click', () => playSound('./tambourine-sound-2.mp3'));
+  </script>
+</body>
+</html>
