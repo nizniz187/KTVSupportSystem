@@ -27,11 +27,25 @@
     new Audio(src1);
     new Audio(src2);
 
-    function playSound(src) {
-      (new Audio(src)).play();
+    const btn1 = document.querySelector('#tamb1');
+    const btn2 = document.querySelector('#tamb2');
+
+    function createSoundPlayHandler(src) {
+      return () => (new Audio(src)).play();
     }
-    document.querySelector('#tamb1').addEventListener('click', () => playSound(src1));
-    document.querySelector('#tamb2').addEventListener('click', () => playSound(src2));
+    function keydownHandler(e) {
+      console.log(e.keyCode)
+      if(e.keyCode == 16 || e.keyCode == 32) {
+        soundPlayHandler1();
+      } else if(e.keyCode == 17 || e.keyCode == 13) {
+        soundPlayHandler2();
+      }
+    }
+    const soundPlayHandler1 = createSoundPlayHandler(src1);
+    const soundPlayHandler2 = createSoundPlayHandler(src2);
+    btn1.addEventListener('click', soundPlayHandler1);
+    btn2.addEventListener('click', soundPlayHandler2);
+    window.addEventListener('keydown', keydownHandler);
   </script>
 </body>
 </html>
